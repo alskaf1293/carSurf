@@ -10,7 +10,7 @@ const Template = (props) => {
           <div className='flex justify-center items-center w-[40px] h-[40px]' >
             <Logo />
           </div>
-          <h1 className='ml-4 text-2xl font-semibold text-white' >Driver</h1>
+          <h1 className='ml-4 text-2xl font-semibold text-white' >{props.title}</h1>
         </div>
         <div className='flex items-center justify-center w-[40px] h-[40px]' >
           <Signout />

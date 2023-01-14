@@ -1,10 +1,10 @@
 import React from 'react'
 import Template from '../components/Template'
 
-const Login = (props) => {
+const PassengerRides = (props) => {
   return (
-    <Template >
-      <div className='h-full' >
+    <Template title='Driver' >
+      <div className='h-full ' >
         test
       </div>
     </Template>
@@ -12,4 +12,4 @@ const Login = (props) => {
   )
 }
 
-export default Login
+export default PassengerRides
