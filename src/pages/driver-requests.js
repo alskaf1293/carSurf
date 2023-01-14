@@ -2,17 +2,17 @@ import React from 'react'
 import Template from '../components/Template'
 import Star from '../assets/Star'
 
-const PassengerRides = (props) => {
+const DriverRequests = (props) => {
   return (
-    <Template title='Drivers Near Me' >
+    <Template title='Passenger Requests' >
       <div className='flex flex-col h-full w-full ' >
-        <Ride name="Holland Pleskac" rides={100} stars={5} />
+        <Request name="Holland Pleskac" rides={100} stars={5} />
       </div>
     </Template>
   )
 }
 
-const Ride = (props) => {
+const Request = (props) => {
   return (
     <div className='my-4 w-full p-2 flex bg-blue-300' >
       <div className='mr-4 w-[60px] h-[60px] bg-gray-400 rounded-full' >
@@ -29,4 +29,4 @@ const Ride = (props) => {
   )
 }
 
-export default PassengerRides
+export default DriverRequests
