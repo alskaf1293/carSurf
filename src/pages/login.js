@@ -1,12 +1,13 @@
 import React from 'react'
+import Template from '../components/Template'
 
-const Login = () => {
+const Login = (props) => {
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
-    </div>
+    <Template >
+      <div className='h-full' >
+        test
+      </div>
+    </Template>
 
   )
 }
