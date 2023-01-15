@@ -3,6 +3,9 @@ import Signout from '../assets/Signout'
 import Logo from '../assets/Logo'
 import { useNavigate } from 'react-router-dom'
 
+import { getAuth, signOut } from "firebase/auth";
+
+
 const Template = (props) => {
   const navigate = useNavigate();
 
@@ -12,8 +15,15 @@ const Template = (props) => {
   }
 
   const onClickSignout = () => {
-    console.log('click signout')
-    navigate("/login")
+
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      console.log("successfully logged out!");
+      navigate("/login");
+    }).catch((error) => {
+      console.log(error);
+    });
+
   }
 
   return (
