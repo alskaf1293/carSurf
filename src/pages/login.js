@@ -44,14 +44,20 @@ const DriverRequests = (props) => {
     setPassword(e.target.value)
   }
 
+  const myStyle = {
+    backgroundImage: "url('https://i.redd.it/qub0v52rls551.png')",
+  }
+
   return (
-    <div className='flex justify-center items-center w-full h-screen bg-blue-500' >
-      <div className='bg-white rounded w-[300px] p-6' >
-        <h1 className='mb-4 text-black text-2xl font-semibold' >Sign In</h1>
-        <input onChange={onEmailChange} value={email} type="email" placeholder='email' name='email' className='w-full mb-4 border-2 rounded p-4 active:border-blue-500' />
-        <input onChange={onPasswordChange} value={password} type="password" placeholder='password' name='password' className='w-full mb-4 border-2 rounded p-4' />
-        <button onClick={onLogin} className='border-2 rounded bg-blue-500 w-full p-4 text-white text-lg font-semibold cursor-pointer' >Login</button>
-        <button onClick={onSignUp} className='w-full pt-3 mb-0 underline'>Sign Up</button>
+    <div style={myStyle}
+    className='flex justify-center items-center w-full h-screen dark:bg-slate-800' 
+    >
+      <div className='dark:bg-slate-800 rounded w-[300px] p-6' >
+        <h1 className='mb-4 text-white text-2xl font-semibold' >Sign In</h1>
+        <input onChange={onEmailChange} value={email} type="email" placeholder='email' name='email' className='w-full mb-4 border-2 rounded p-2  bg-slate-500' />
+        <input onChange={onPasswordChange} value={password} type="password" placeholder='password' name='password' className='w-full mb-4 rounded p-2' />
+        <button onClick={onLogin} className='rounded bg-gray-700 w-full p-4 text-white text-lg font-semibold cursor-pointer' >Login</button>
+        <button onClick={onSignUp} className='text-white w-full pt-3 mb-0'>Sign Up</button>
       </div>
     </div>
   )
