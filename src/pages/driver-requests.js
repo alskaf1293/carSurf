@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Template from '../components/Template'
 import Star from '../assets/Star'
 import { useNavigate } from "react-router-dom";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, query, where, doc, setDoc } from "firebase/firestore";
 import { db } from '../firebase';
 
 const DRIVER_ID = "5ewiHEDJ7dhK4cpOYTLn"
@@ -50,6 +50,9 @@ const Request = (props) => {
     // have user id
     // set rideInProgress to true
     // set passenger rideInProgress to true
+
+    const docRef = doc(db, "users", props.userId);
+    setDoc(docRef, { rideInProgress: true }, { merge: true })
 
     navigator('/ride-in-progress')
 

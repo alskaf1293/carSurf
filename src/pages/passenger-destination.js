@@ -23,7 +23,8 @@ const PassengerDestination = () => {
       rating: RATING,
       userId: USERID,
       chosen_driver: "none",
-      destination: destination
+      destination: destination,
+      rideInProgress: false,
     });
 
     navigate("/passenger-rides")
