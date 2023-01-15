@@ -1,6 +1,7 @@
 import React from 'react'
 import Template from '../components/Template'
 import { useNavigate } from 'react-router-dom'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 const Home = (props) => {
   const auth = getAuth();
