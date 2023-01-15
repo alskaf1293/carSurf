@@ -26,6 +26,17 @@ const Template = (props) => {
 
   }
 
+  const getStyle = (title) => {
+    let style = {
+      fontFamily: 'Brush Script MT',
+      fontSize: 30,
+    }
+    if(title != "Carsurf"){
+      return {}
+    }
+    return style
+  }
+
   return (
     <div className='w-full h-screen' >
       <div className='h-[10vh] p-6 bg-slate-800 flex items-center shadow' >
@@ -33,7 +44,7 @@ const Template = (props) => {
           <div onClick={onClickLogo} className='flex justify-center items-center w-[40px] h-[40px] cursor-pointer' >
             <Logo />
           </div>
-          <h1 className='ml-4 text-2xl font-semibold text-white' >{props.title}</h1>
+          <h1 style={getStyle(props.title)} className='ml-4 text-2xl font-semibold text-white' >{props.title}</h1>
         </div>
         <div onClick={onClickSignout} className='flex items-center justify-center w-[40px] h-[40px] cursor-pointer' >
           <Signout />
