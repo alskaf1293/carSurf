@@ -7,12 +7,12 @@ const Home = (props) => {
 
   const onClickDriver = () => {
     console.log('clicked driver')
-    navigate('/driver-requests')
+    navigate('/driver-destination')
   }
 
   const onClickPassenger = () => {
     console.log('clicked passenger')
-    navigate('/passenger-rides')
+    navigate('/passenger-destination')
   }
 
   return (
