@@ -9,7 +9,9 @@ let staticPath = path.join(__dirname, 'build');
 
 const rootRouter = express.Router();
 
-const { createUser } = require('./api/sign-up')
+const { createUser } = require('./api/sign-up');
+const { login } = require('./api/login');
+
 
 const { initalizeSession } = require('./util/initalizeSession.js');
 
@@ -68,7 +70,7 @@ const accounts = {
     }
 
 }
-
+/*
 app.post('/api/login', (req, res) =>{ 
 
     Object.entries(accounts).forEach(([key, value]) =>{
@@ -80,21 +82,19 @@ app.post('/api/login', (req, res) =>{
             res.sendStatus(500);
         }
     });
+*/
 
+app.post('/api/login', (req, res) =>{ 
+    login(fbapp, req.body.email, req.body.password);
+    res.send(200);
 });
 
 app.post('/api/createAccount', (req, res) => {
-    try{
-        createUser(userDB, req, req.body.email, req.body.password);
-        res.send(200);
-    }
-    catch(err){
-        res.send(300);
-    }
+    createUser(fbapp, req.body.email, req.body.password);
+    res.sendStatus(200);
 });
 
 app.listen(port, ()=>{
 
     console.log(`Listening on port: ${port}`);
-
-});
+})
