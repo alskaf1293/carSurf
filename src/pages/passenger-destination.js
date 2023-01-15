@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Template from '../components/Template'
 import { useNavigate } from "react-router-dom";
 
-const DriverDestination = () => {
+const PassengerDestination = () => {
   const navigate = useNavigate();
 
   const [destination, setDestination] = useState('')
@@ -18,7 +18,7 @@ const DriverDestination = () => {
 
 
   return (
-    <Template title = "Driver">
+    <Template title = "Passenger">
     <div className = 'h-full flex justify-center items-center '>
 
     <fieldset className='bg-blue-200 rounded-xl py-7'>
@@ -40,4 +40,4 @@ const DriverDestination = () => {
   )
 }
 
-export default DriverDestination
+export default PassengerDestination
