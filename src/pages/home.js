@@ -12,7 +12,7 @@ const Home = (props) => {
 
   const onClickPassenger = () => {
     console.log('clicked passenger')
-    navigate('/driver-destination')
+    navigate('/passenger-destination')
   }
 
   return (
