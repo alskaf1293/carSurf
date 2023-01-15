@@ -56,6 +56,7 @@ const SignUp = (props) => {
 
   const myStyle = {
     backgroundImage: "url('https://i.redd.it/qub0v52rls551.png')",
+    flexDirection: 'column'
   }
 
   const passwordChangeStyle = {
@@ -66,6 +67,9 @@ const SignUp = (props) => {
     <div style={myStyle}
     className='flex justify-center items-center w-full h-screen dark:bg-slate-800'
     >
+      <text className="titleGradient2">
+        CarSurf
+      </text>
       <div className='dark:bg-slate-800 rounded w-[300px] p-6' >
         <h1 className='mb-4 text-white text-2xl font-semibold' >Sign Up</h1>
         <input onChange={onNameChange} value={name} type="name" placeholder='name' name='name' className='w-full mb-4 border-2 rounded p-2'/>

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { fb } from "../firebase"
+import '../css/gradient.css';
 
 
 const DriverRequests = (props) => {
@@ -46,12 +47,16 @@ const DriverRequests = (props) => {
 
   const myStyle = {
     backgroundImage: "url('https://i.redd.it/qub0v52rls551.png')",
+    flexDirection: 'column'
   }
 
   return (
     <div style={myStyle}
     className='flex justify-center items-center w-full h-screen dark:bg-slate-800' 
     >
+      <text className="titleGradient text-8xl">
+        CarSurf
+      </text>
       <div className='dark:bg-slate-800 rounded w-[300px] p-6' >
         <h1 className='mb-4 text-white text-2xl font-semibold' >Sign In</h1>
         <input onChange={onEmailChange} value={email} type="email" placeholder='email' name='email' className='w-full mb-4 border-2 rounded p-2  bg-slate-500' />

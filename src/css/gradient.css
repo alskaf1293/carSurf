@@ -1,0 +1,23 @@
+.titleGradient {
+
+
+    font-size: 40px;
+    font-family: Brush Script MT;
+    background: linear-gradient(to right, #f87171, #9ca3af, #38bdf8);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    padding: 3%;
+
+    font-size: 130px;
+}
+.titleGradient2 {
+
+
+    font-size: 40px;
+    font-family: Brush Script MT;
+    background: linear-gradient(to right, #f87171, #9ca3af, #38bdf8);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+
+    font-size: 130px;
+}
