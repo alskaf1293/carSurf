@@ -1,12 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Template from '../components/Template'
 import Star from '../assets/Star'
 
 const PassengerRides = (props) => {
+  const [drivers, setDrivers] = useState([])
+  useEffect(() => {
+    const drivers = [
+      {
+        name: "Devan Leland",
+        rides: 25,
+        stars: 3.8
+      },
+      {
+        name: "Harris Connor",
+        rides: 332,
+        stars: 4.8
+      }
+    ]
+    setDrivers(drivers)
+  }, [])
+
+
+
   return (
     <Template title='Drivers Near Me' >
       <div className='flex flex-col h-full w-full ' >
-        <Ride name="Holland Pleskac" rides={100} stars={5} />
+        {drivers.map((driver) => <Ride name={driver.name} rides={driver.rides} stars={driver.stars} />)}
       </div>
     </Template>
   )
