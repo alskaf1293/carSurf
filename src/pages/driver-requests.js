@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { collection, getDocs, query, where, doc, setDoc } from "firebase/firestore";
 import { db } from '../firebase';
 
-const DRIVER_ID = "5ewiHEDJ7dhK4cpOYTLn"
+const DRIVER_ID = "blgijOhtDWAyU8mrl7y5"
 // const DRIVER_ID = 'as'
 
 const DriverRequests = (props) => {
@@ -36,7 +36,7 @@ const DriverRequests = (props) => {
   return (
     <Template title='Passenger Requests' >
       <div className='flex flex-col h-full w-full ' >
-        {requests.map((request) => <Request key={request.id} name={request.name} rides={request.rides} stars={request.rating} />)}
+        {requests.map((request) => <Request key={request.id} name={request.name} rides={request.rides} stars={request.rating} userId={request.userId} />)}
       </div>
     </Template>
   )

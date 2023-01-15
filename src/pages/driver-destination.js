@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from '../firebase'
 
-const NAME = "Alan Mathison"
+const NAME = "Enok Ethelred"
 const RIDES = 4
-const RATING = 5.0
-const USERID = 'user id from auth'
+const RATING = 5
+const USERID = 'blgijOhtDWAyU8mrl7y5'
 
 
 const DriverDestination = () => {
