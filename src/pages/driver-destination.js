@@ -6,12 +6,10 @@ import { db } from '../firebase'
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 
-
 const NAME = "Enok Ethelred"
 const RIDES = 4
 const RATING = 5
 const USERID = 'blgijOhtDWAyU8mrl7y5'
-
 
 const DriverDestination = () => {
 
@@ -72,7 +70,7 @@ const DriverDestination = () => {
         <fieldset className='bg-slate-800 rounded-xl py-7 content-center'>
           <div className="py-5 space-y-3 content-center">
             <text style={textCenterAlign} className='w-[90%] ml-[5%] mb-0 font-semibold mt-[5%] text-slate-300 text-center content-center'>Within</text>
-              <input onChange={onRangeChange} value={range} list="hosting-plan" type="number" placeholder="mile" className='text-lg text-black w-[90%] ml-[5%] rounded mt-2 p-2' />           
+              <input onChange={onRangeChange} value={range} list="hosting-plan" type="number" min="1" placeholder="mile" className='text-lg text-black w-[90%] ml-[5%] rounded mt-2 p-2 appearance-none' />           
           </div>
           <div className="py-7 space-y-3 content-center">
             <text style={textCenterAlign} className='w-[90%] ml-[5%] mb-0 font-semibold mt-[5%] text-slate-300 text-center content-center' id="name-label">Where to</text>
