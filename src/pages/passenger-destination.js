@@ -7,10 +7,10 @@ import { db } from '../firebase'
 // TODO
 // Get this information from the users collection
 // need user id from the authentication in this file!
-const NAME = "Alan Mathison"
-const RIDES = 4
-const RATING = 5.0
-const USERID = 'user id from auth'
+const NAME = "Devant Thames"
+const RIDES = 3.2
+const RATING = 83
+const USERID = '5ewiHEDJ7dhK4cpOYTLn'
 
 const PassengerDestination = () => {
   const navigate = useNavigate();
