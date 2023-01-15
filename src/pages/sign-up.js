@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { fb } from "../firebase"
 
 const SignUp = (props) => {
@@ -19,7 +19,14 @@ const SignUp = (props) => {
     .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        navigate('/login')
+        updateProfile(userCredential.user, {
+          displayName: name, rides: 0, rating: 0
+        }).then(() => {
+          console.log("full profile completed")
+          navigate('/login');
+        }).catch((error) => {
+          console.log(error);
+        });
         // ...
     })
     .catch((error) => {
@@ -61,6 +68,7 @@ const SignUp = (props) => {
     >
       <div className='dark:bg-slate-800 rounded w-[300px] p-6' >
         <h1 className='mb-4 text-white text-2xl font-semibold' >Sign Up</h1>
+        <input onChange={onNameChange} value={name} type="name" placeholder='name' name='name' className='w-full mb-4 border-2 rounded p-2  bg-slate-500'/>
         <input onChange={onEmailChange} value={email} type="email" placeholder='email' name='email' className='w-full mb-4 border-2 rounded p-2  bg-slate-500' />
         <input onChange={onPasswordChange} value={password} type="password" name='password' placeholder='password' className='w-full mb-4 rounded p-2' />
         <input onChange={onConfirmPasswordChange} value={confirmPassword} type="password" placeholder='confirm password' className='w-full mb-4 rounded p-2' />
