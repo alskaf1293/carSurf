@@ -1,31 +1,40 @@
 import React, { useEffect, useState } from 'react'
 import Template from '../components/Template'
 import Star from '../assets/Star'
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from '../firebase';
+
+const DRIVER_ID = "5ewiHEDJ7dhK4cpOYTLn"
+// const DRIVER_ID = 'as'
 
 const DriverRequests = (props) => {
 
   const [requests, setRequests] = useState([])
 
+  const getPassengerRequests = async () => {
+    const q = query(collection(db, 'passengers'), where("chosen_driver", "==", DRIVER_ID))
+    try {
+      await getDocs(q)
+        .then((querySnapshot) => {
+          const data = querySnapshot.docs
+            .map((doc) => ({ ...doc.data(), id: doc.id }));
+          console.log("recieved data", data)
+          setRequests(data)
+        })
+
+    } catch (e) {
+      console.error("Error:", e);
+    }
+  }
+
   useEffect(() => {
-    const requests = [
-      {
-        name: "Holland Pleskac",
-        rides: 100,
-        stars: 5
-      },
-      {
-        name: "Winston Chung",
-        rides: 14,
-        stars: 4.2
-      }
-    ]
-    setRequests(requests)
+    getPassengerRequests()
   }, [])
 
   return (
     <Template title='Passenger Requests' >
       <div className='flex flex-col h-full w-full ' >
-        {requests.map((request) => <Request name={request.name} rides={request.rides} stars={request.stars} />)}
+        {requests.map((request) => <Request key={request.id} name={request.name} rides={request.rides} stars={request.rating} />)}
       </div>
     </Template>
   )
