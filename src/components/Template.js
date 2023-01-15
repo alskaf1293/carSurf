@@ -25,7 +25,7 @@ const Template = (props) => {
           <Signout />
         </div>
       </div>
-      <h1 className="h-full text-3xl font-bold underline">
+      <h1 className="h-full text-3xl font-bold">
         {props.children}
       </h1>
     </div>
