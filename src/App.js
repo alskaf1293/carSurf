@@ -3,6 +3,8 @@ import Main from './pages/main';
 import PassengerRides from './pages/passenger-rides';
 import { Route, Routes } from 'react-router-dom';
 import DriverRequests from './pages/driver-requests';
+import Login from './pages/login';
+import Home from './pages/home';
 
 function App() {
   return (
@@ -10,6 +12,9 @@ function App() {
       <Route path='/' element={<Main />} />
       <Route path='/passenger-rides' element={<PassengerRides />} />
       <Route path='driver-requests' element={<DriverRequests />} />
+      <Route path='login' element={<Login />} />
+      <Route path='home' element={<Home />} />
+
     </Routes>
   );
 }
