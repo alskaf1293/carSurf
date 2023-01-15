@@ -72,7 +72,7 @@ const SignUp = (props) => {
         <input onChange={onEmailChange} value={email} type="email" placeholder='email' name='email' className='w-full mb-4 border-2 rounded p-2 ' />
         <input onChange={onPasswordChange} value={password} type="password" name='password' placeholder='password' className='w-full mb-4 border-2 rounded p-2' />
         <input onChange={onConfirmPasswordChange} value={confirmPassword} type="password" placeholder='confirm password' className='w-full mb-4 border-2 rounded p-2' />
-        <button onClick={onCreate} className='text-white w-full pt-3 mb-0' >Create Account</button>
+        <button onClick={onCreate} className='text-sky-200 w-full pt-3 mb-0' >Create Account</button>
       </div>
     </div>
   )

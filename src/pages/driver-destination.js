@@ -62,12 +62,12 @@ const DriverDestination = () => {
     textAlign: 'center'
   }
   return (
-    <Template title="CarSurf">
+    <Template title="Drive">
       <div style={backgroundStyle} className='flex flex-col h-full w-full justify-center items-center gap-y-8'>
 
         <fieldset className='bg-slate-800 rounded-xl py-7 content-center'>
           <div className="py-5 space-y-3 content-center">
-            <text style={textCenterAlign} className='w-[90%] ml-[5%] mb-0 font-semibold mt-[5%] text-red-200 text-center content-center'>Within</text>
+            <text style={textCenterAlign} className='w-[90%] ml-[5%] mb-0 font-semibold mt-[5%] text-slate-300 text-center content-center'>Within</text>
               <input onChange={onRangeChange} value={range} list="hosting-plan" type="tel" placeholder="mile" className='text-lg text-black w-[90%] ml-[5%] rounded mt-2 p-2' />
               <datalist id="hosting-plan">
                 <option value="1">mile</option>
@@ -76,7 +76,7 @@ const DriverDestination = () => {
               </datalist>
           </div>
           <div className="py-7 space-y-3 content-center">
-            <text style={textCenterAlign} className='w-[90%] ml-[5%] mb-0 font-semibold mt-[5%] text-red-200 text-center content-center' id="name-label">Where to</text>
+            <text style={textCenterAlign} className='w-[90%] ml-[5%] mb-0 font-semibold mt-[5%] text-slate-300 text-center content-center' id="name-label">Where to</text>
               <input onChange={onDestinationChange} value={destination} className='text-lg text-black w-[90%] ml-[5%] rounded mt-2 p-2 py-2' id="name" type="text" required placeholder="Enter a destination" />
           </div>
           <div>
