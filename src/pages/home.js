@@ -8,7 +8,7 @@ const Home = (props) => {
   onAuthStateChanged(auth, (user) => {
     if(user){
       console.log(user);
-      const uid = user.id; 
+      const uid = user.displayName; 
       console.log("Logged in as " + uid);
     }
     else{

@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { fb } from "../firebase"
+import { fb, db } from "../firebase"
+import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
 
 const SignUp = (props) => {
   const navigate = useNavigate();
@@ -20,11 +21,16 @@ const SignUp = (props) => {
         // Signed in 
         const user = userCredential.user;
         updateProfile(userCredential.user, {
-          displayName: name, rides: 0, rating: 0
+          displayName: name
         }).then(() => {
-          console.log("full profile completed")
+          console.log("test");
+          const userDoc = setDoc(doc(db, "user", user.uid), {
+             reviews: 0, aggregateReviews: 0, rating: 3, 
+          });
+          console.log("full profile completed");
           navigate('/login');
         }).catch((error) => {
+          //catching error on 
           console.log(error);
         });
         // ...
