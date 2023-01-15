@@ -6,6 +6,7 @@ import DriverRequests from './pages/driver-requests';
 import Login from './pages/login';
 import Home from './pages/home';
 import DriverDestination from './pages/driver-destination';
+import SignUp from './pages/sign-up';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route path='login' element={<Login />} />
       <Route path='home' element={<Home />} />
       <Route path='driver-destination' element={<DriverDestination />} />
+      <Route path='sign-up' element={<SignUp />} />
 
     </Routes>
   );
