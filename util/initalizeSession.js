@@ -20,34 +20,37 @@ function initalizeSession(userDB){
 
     console.log("hello");
 
-
-
-    passport.use(
-        new LocalStrategy({ usernameField: 'username' }, (username, password, done) => {
-            const user = User.doc(username).get()
-              .then(user => {
+    passport.use('login',
+        new LocalStrategy({ usernameField: 'username', passwordField: 'password' }, (username, password, done) => {
+            const user = userDB.doc(username).get().then(user => {
+                    console.log("kys");
                   bcrypt.compare(password, user.data()['password'], (err, match) => {
                       if (err) throw err;
                       if (!match) { return done(null, false, { message: 'Password does not match.' }); }
                       else { return done(null, user); }
                   });
-              })
-              .catch(err => {
+              }).catch(err => {
                   console.log(err);
                   return done(null, false, { message: 'No user found.' });
               });
         })
     );
 
+    /*
+
     passport.serializeUser((user, done) => {
         done(null, user.id);
     });
 
     passport.deserializeUser((id, done) => {
-        const user = User.doc(id).get()
+        const user = userDB.doc(id).get()
           .then(user => done(null, user))
           .catch(err => done(err, user));
     });
+
+    */
 }
 
 module.exports = { initalizeSession };
+
+

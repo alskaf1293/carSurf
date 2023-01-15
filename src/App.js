@@ -10,20 +10,23 @@ import PassengerDestination from './pages/passenger-destination';
 import SignUp from './pages/sign-up';
 import RideInProgress from './pages/ride-in-progress';
 import Maps from './pages/maps.js'
+import RedirectWrapper from './components/redirect';
+
 
 function App() {
   return (
     <Routes>
-      <Route path='/' element={<Main />} />
-      <Route path='/passenger-rides' element={<PassengerRides />} />
-      <Route path='driver-requests' element={<DriverRequests />} />
+
+        <Route path='/' element={<Main />} />
+        <Route path='/passenger-rides' element={<PassengerRides />} />
+        <Route path='driver-requests' element={<DriverRequests />} />
+        <Route path='home' element={<Home />} />
+        <Route path='driver-destination' element={<DriverDestination />} />
+        <Route path='passenger-destination' element={<PassengerDestination />} />
+        <Route path='ride-in-progress' element={<RideInProgress/>} />
+        <Route path='maps' element={<Maps/>}/>
       <Route path='login' element={<Login />} />
-      <Route path='home' element={<Home />} />
-      <Route path='driver-destination' element={<DriverDestination />} />
-      <Route path='passenger-destination' element={<PassengerDestination />} />
       <Route path='sign-up' element={<SignUp />} />
-      <Route path='ride-in-progress' element={<RideInProgress/>} />
-      <Route path='maps' element={<Maps/>}/>
     </Routes>
   );
 }

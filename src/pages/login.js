@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
-
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { fb } from "../firebase"
 
 
 const DriverRequests = (props) => {
@@ -10,18 +11,25 @@ const DriverRequests = (props) => {
   const [password, setPassword] = useState('')
 
   const onLogin = () => {
-    console.log("Logging in with", email, password)
-    const options = {
-      method: 'POST',
-      body: JSON.stringify({email, password}),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
 
-    fetch('/api/login', options).then(respon => console.log(respon));
+  const auth = getAuth(fb);
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      console.log(user);
+      navigate('/home');
+      
 
-    //navigate("/home")
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorMessage);
+    });
+
+
   }
 
   const onSignUp = () => {
@@ -40,7 +48,7 @@ const DriverRequests = (props) => {
     <div className='flex justify-center items-center w-full h-screen bg-blue-500' >
       <div className='bg-white rounded w-[300px] p-6' >
         <h1 className='mb-4 text-black text-2xl font-semibold' >Sign In</h1>
-        <input onChange={onEmailChange} value={email} type="email" placeholder='email' name='username' className='w-full mb-4 border-2 rounded p-4 active:border-blue-500' />
+        <input onChange={onEmailChange} value={email} type="email" placeholder='email' name='email' className='w-full mb-4 border-2 rounded p-4 active:border-blue-500' />
         <input onChange={onPasswordChange} value={password} type="password" placeholder='password' name='password' className='w-full mb-4 border-2 rounded p-4' />
         <button onClick={onLogin} className='border-2 rounded bg-blue-500 w-full p-4 text-white text-lg font-semibold cursor-pointer' >Login</button>
         <button onClick={onSignUp} className='w-full pt-3 mb-0 underline'>Sign Up</button>

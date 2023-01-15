@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { fb } from "../firebase"
+
 const SignUp = (props) => {
   const navigate = useNavigate();
 
@@ -11,18 +14,21 @@ const SignUp = (props) => {
 
   const onCreate = () => {
 
-    const options = {
-      method: 'POST',
-      body: JSON.stringify({email, password}),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
-
-    fetch('/api/createAccount', options).then(res => console.log(res));
+    const auth = getAuth(fb);
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        navigate('/login')
+        // ...
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+    });
 
     console.log("Logging in with", email, password)
-    //navigate("/login")
   }
 
   const onNameChange = (e) => {
