@@ -39,12 +39,12 @@ const Home = (props) => {
         <div style={backgroundStyle} className='flex flex-col h-full w-full justify-center items-center gap-y-8' >
         <text className="font-sans text-slate-800">Drive someone</text>
           <div onClick={onClickDriver} className='w-[300px] h-[100px] font-sans bg-slate-800 text-slate-300 flex justify-center items-center rounded cursor-pointer'>
-            <text className="font-sans text-xl">Drive</text>
+            <text className="font-sans text-3xl">Drive</text>
           </div>
 
           <text className="font-sans text-slate-800">Get a ride</text>
           <div onClick={onClickPassenger} className='w-[300px] h-[100px] font-sans bg-slate-800 text-slate-300 flex justify-center items-center rounded cursor-pointer' >
-            <text className="font-sans text-xl">Ride</text>
+            <text className="font-sans text-3xl">Ride</text>
           </div>
         </div>
       </Template>
