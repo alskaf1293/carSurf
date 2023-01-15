@@ -5,11 +5,11 @@ import { addDoc, collection, getDoc, doc } from "firebase/firestore";
 import { db } from '../firebase'
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
+
 const NAME = "Enok Ethelred"
 const RIDES = 4
 const RATING = 5
 const USERID = 'blgijOhtDWAyU8mrl7y5'
-
 
 const DriverDestination = () => {
 
@@ -31,13 +31,14 @@ const DriverDestination = () => {
 
   const onSubmit = async () => {
     console.log("Going to ", destination)
-
-    const userDoc = await getDoc(doc(db, "user", auth.currentUser.uid));
-    
+    console.log(auth.currentUser.uid);
+    const userDoc = collection(db, "user");
+    const userSnap = await getDoc(doc(userDoc, auth.currentUser.uid));
+  
     const docRef = await addDoc(collection(db, "drivers"), {
       name: auth.currentUser.displayName,
-      rides: userDoc.data()['rides'],
-      rating: userDoc.data()['rating'],
+      rides: 5,
+      rating: 4.3,
       userId: auth.currentUser.uid,
       chosen_driver: "none",
       destination: destination,

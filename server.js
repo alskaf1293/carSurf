@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const session = require('express-session');
 
-const port = 5321;
+const port = 5322;
 const path = require('path');
 
 let staticPath = path.join(__dirname, 'build');

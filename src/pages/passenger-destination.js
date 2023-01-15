@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import Template from '../components/Template'
 import { useNavigate } from "react-router-dom";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc } from "firebase/firestore";
 import { db } from '../firebase'
+
+import {getAuth, onAuthStateChanged} from "firebase/auth";
 
 // TODO
 // Get this information from the users collection
@@ -13,6 +15,18 @@ const RATING = 83
 const USERID = '5ewiHEDJ7dhK4cpOYTLn'
 
 const PassengerDestination = () => {
+
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if(user){
+      console.log("Logged in as " + user.email);
+    }
+    else{
+      console.log("Logged out");
+      navigate('/login');
+    }
+  });
+
   const navigate = useNavigate();
 
   const [destination, setDestination] = useState('')
@@ -20,11 +34,13 @@ const PassengerDestination = () => {
   const onSubmit = async () => {
     console.log("Going to ", destination)
 
+    const userDoc = await getDoc(doc(db, "user", auth.currentUser.uid));
+
     const docRef = await addDoc(collection(db, "passengers"), {
-      name: NAME,
-      rides: RIDES,
-      rating: RATING,
-      userId: USERID,
+      name: auth.currentUser.displayName,
+      rides: userDoc.data()['rides'],
+      rating: userDoc.data()['rating'],
+      userId: auth.currentUser.uid,
       chosen_driver: "none",
       destination: destination,
       rideInProgress: false,

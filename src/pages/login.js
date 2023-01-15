@@ -54,7 +54,7 @@ const DriverRequests = (props) => {
     <div style={myStyle}
     className='flex justify-center items-center w-full h-screen dark:bg-slate-800' 
     >
-      <text className="titleGradient text-8xl">
+      <text className="titleGradient">
         CarSurf
       </text>
       <div className='dark:bg-slate-800 rounded w-[300px] p-6' >
