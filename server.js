@@ -1,13 +1,16 @@
 const express = require('express');
 const app = express();
 
-const rootRouter = express.Router();
+
 
 const port = 5321;
-
 const path = require('path');
 
 let staticPath = path.join(__dirname, 'build');
+
+const rootRouter = express.Router();
+const login = require('./api/login.js');
+const createAccount = require('./api/createAccount.js');
 
 app.use(express.static(staticPath));
 
@@ -17,6 +20,9 @@ rootRouter.get('/(*)?', (req, res) =>{
 
 app.use(rootRouter);
 
+app.post('/api/login', login());
+
+app.post('/api/createAccount', createAccount())
 
 app.listen(port, ()=>{
 
