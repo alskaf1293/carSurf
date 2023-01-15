@@ -37,19 +37,21 @@ const PassengerDestination = () => {
     setDestination(e.target.value)
   }
 
-
+  const backgroundStyle={
+    //https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80
+    backgroundImage: "url('https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80')"
+  }
   return (
-    <Template title="Passenger">
-      <div className='h-full flex justify-center items-center '>
+    <Template title="Ride">
+      <div style={backgroundStyle} className='h-full flex justify-center items-center '>
 
-        <fieldset className='bg-blue-200 rounded-xl py-7'>
-          <div>
-            <label className='w-[90%] ml-[5%] mb-0 font-semibold' id="name-label">Where to:
-              <input onChange={onDestinationChange} value={destination} className='w-[90%] ml-[5%] rounded mt-2 p-4' id="name" type="text" required placeholder="Enter a destination" />
-            </label>
+        <fieldset className='bg-slate-800 rounded-xl py-7'>
+          <div className="py-5 space-y-7 content-center">
+            <label className='w-[90%] ml-[5%] mb-0 font-semibold mt-[5%] text-slate-300 text-center content-center' id="name-label">Where to</label>
+              <input onChange={onDestinationChange} value={destination} className='text-lg text-black w-[90%] ml-[5%] rounded mt-2 p-2' id="name" type="text" required placeholder="Enter a destination" />
           </div>
-          <div>
-            <button onClick={onSubmit} className='w-[90%] border-2 rounded border-blue-500 bg-blue-500 text-white p-4 ml-[5%] my-4 font-semibold'
+          <div className="content-center">
+            <button onClick={onSubmit} className='w-[90%] rounded text-sky-300 p-4 ml-[5%] my-4 font-semibold'
               id="submit" type="submit">Submit
             </button>
           </div>
