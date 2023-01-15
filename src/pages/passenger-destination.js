@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Template from '../components/Template'
 import { useNavigate } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
-import {db} from '../firebase'
+import { db } from '../firebase'
 
 const NAME = "Alan Mathison"
 const RIDES = 4
@@ -22,7 +22,8 @@ const PassengerDestination = () => {
       rides: RIDES,
       rating: RATING,
       userId: USERID,
-      chosen_driver: "none"
+      chosen_driver: "none",
+      destination: destination
     });
 
     navigate("/passenger-rides")

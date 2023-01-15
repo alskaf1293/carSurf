@@ -24,7 +24,9 @@ const DriverDestination = () => {
       rides: RIDES,
       rating: RATING,
       userId: USERID,
-      chosen_driver: "none"
+      chosen_driver: "none",
+      destination: destination,
+      range: range,
     });
 
     navigate("/driver-requests")
