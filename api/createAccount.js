@@ -2,7 +2,6 @@
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 
-const userDB = db.collection("users");
 
 const accountScheme = {
 
@@ -17,7 +16,8 @@ const accountScheme = {
 }
 
 
-function createAccount(){
+
+function createAccount(userDB){
     passport.use('signup', new localStrategy({
         usernameField: 'email',
         passwordField: 'password',
@@ -26,10 +26,10 @@ function createAccount(){
         bcrypt.hash(password, 10, (err, hashedPassword) => {
             try{
                 if(err) return done(err);
-                var user = new accountScheme;
-                user.name = req.body.name;
-                user.email = email;
-                user.password = hashedPassword;
+                var userInfo = new accountScheme;
+                userInfo.name = req.body.name;
+                userInfo.email = email;
+                userInfo.password = hashedPassword;
                 const user = userDB.set(user);
                 return done(null, user)
             } catch(error){
