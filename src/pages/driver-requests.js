@@ -5,16 +5,32 @@ import { useNavigate } from "react-router-dom";
 import { collection, getDocs, query, where, doc, setDoc } from "firebase/firestore";
 import { db } from '../firebase';
 
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
+
 const DRIVER_ID = "blgijOhtDWAyU8mrl7y5"
 // const DRIVER_ID = 'as'
 
 const DriverRequests = (props) => {
-  const navigator = useNavigate()
+
+  const navigate = useNavigate()
+
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if(user){
+      console.log("Logged in as " + user.email);
+    }
+    else{
+      console.log("Logged out");
+      navigate('/login');
+    }
+  });
+
+
 
   const [requests, setRequests] = useState([])
 
   const getPassengerRequests = async () => {
-    const q = query(collection(db, 'passengers'), where("chosen_driver", "==", DRIVER_ID))
+    const q = query(collection(db, 'passengers'), where("chosen_driver", "==", auth.currentUser.uid))
     try {
       await getDocs(q)
         .then((querySnapshot) => {

@@ -5,12 +5,29 @@ import { useNavigate } from "react-router-dom";
 import { collection, getDocs, query, where, doc, getDoc, setDoc, onSnapshot } from "firebase/firestore";
 import { db } from '../firebase';
 
+import {getAuth, onAuthStateChanged} from "firebase/auth";
+
+
 const DESTINATION = "Los Angeles, CA"
 
 const userId = "5ewiHEDJ7dhK4cpOYTLn"
 const DRIVER_USER_ID = "blgijOhtDWAyU8mrl7y5"
 
 const PassengerRides = (props) => {
+
+
+  const navigate = useNavigate()
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if(user){
+      console.log("Logged in as " + user.email);
+    }
+    else{
+      console.log("Logged out");
+      navigate('/login');
+    }
+  });
+
   const [drivers, setDrivers] = useState([])
   const navigator = useNavigate()
 
@@ -33,10 +50,10 @@ const PassengerRides = (props) => {
   // }
 
   useEffect(() => {
-    const unsub = onSnapshot(doc(db, "users", userId), (doc) => {
+    const unsub = onSnapshot(doc(db, "passengers", auth.currentUser.uid), (doc) => {
       console.log("Current data: ", doc.data());
 
-      if (doc.data().rideInProgress) {
+      if (doc.data()['rideInProgress']) {
         navigator('/ride-in-progress-passenger')
       }
     });
@@ -52,10 +69,13 @@ const PassengerRides = (props) => {
 
       // Get Destination from the users
 
-      const docRef = doc(db, "users", userId);
-      const docSnap = await getDoc(docRef);
+      const docRef = doc(db, "passengers");
+
+      const query = query(docRef, where("userId", "==", auth.currentUser.uid));
+      const docSnap = await getDoc(query);
+
       console.log("snap data", docSnap.data())
-      const destination = docSnap.data().destination
+      const destination = docSnap.data()['destination']
       console.log("destination", destination)
 
       const q = query(collection(db, 'drivers'), where("destination", "==", destination))
@@ -92,8 +112,8 @@ const Ride = (props) => {
     // gets user id
     // gets user in passengers
     // updates chosen_driver in passengers to chosen driver
-
-    const q = query(collection(db, 'passengers'), where("userId", "==", userId))
+    const auth = getAuth();
+    const q = query(collection(db, 'passengers'), where("userId", "==", auth.currentUser.uid))
     const docs = await getDocs(q)
       .then((querySnapshot) => {
         const data = querySnapshot.docs
