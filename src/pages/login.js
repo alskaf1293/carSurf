@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 
+
+
 const DriverRequests = (props) => {
   const navigate = useNavigate();
 
@@ -9,7 +11,15 @@ const DriverRequests = (props) => {
 
   const onLogin = () => {
     console.log("Logging in with", email, password)
-    navigate("/home")
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({email, password}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    fetch("/api/login", options).then(res => console.log(res));
+    //navigate("/home")
   }
 
   const onSignUp = () => {
