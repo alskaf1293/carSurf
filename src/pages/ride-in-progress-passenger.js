@@ -13,7 +13,7 @@ const PassengerRides = (props) => {
         <div className='w-[300px]' >
           <div className='flex items-center pl-2' >
             <Person />
-            <h2 className='ml-4 mb-1' >Enok Ethelred</h2>
+            <h2 className='ml-4 mb-1' >Devant Thames</h2>
           </div>
           <div className='flex items-center mt-4' >
             <Destination />

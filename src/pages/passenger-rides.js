@@ -37,7 +37,7 @@ const PassengerRides = (props) => {
       console.log("Current data: ", doc.data());
 
       if (doc.data().rideInProgress) {
-        navigator('/ride-in-progress')
+        navigator('/ride-in-progress-passenger')
       }
     });
 
