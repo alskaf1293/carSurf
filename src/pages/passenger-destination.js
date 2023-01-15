@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from '../firebase'
 
+// TODO
+// Get this information from the users collection
+// need user id from the authentication in this file!
 const NAME = "Alan Mathison"
 const RIDES = 4
 const RATING = 5.0
