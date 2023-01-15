@@ -70,12 +70,7 @@ const DriverDestination = () => {
         <fieldset className='bg-slate-800 rounded-xl py-7 content-center'>
           <div className="py-5 space-y-3 content-center">
             <text style={textCenterAlign} className='w-[90%] ml-[5%] mb-0 font-semibold mt-[5%] text-slate-300 text-center content-center'>Within</text>
-              <input onChange={onRangeChange} value={range} list="hosting-plan" type="tel" placeholder="mile" className='text-lg text-black w-[90%] ml-[5%] rounded mt-2 p-2' />
-              <datalist id="hosting-plan">
-                <option value="1">mile</option>
-                <option value="5">miles</option>
-                <option value="10">miles</option>
-              </datalist>
+              <input onChange={onRangeChange} value={range} list="hosting-plan" type="number" placeholder="mile" className='text-lg text-black w-[90%] ml-[5%] rounded mt-2 p-2' />           
           </div>
           <div className="py-7 space-y-3 content-center">
             <text style={textCenterAlign} className='w-[90%] ml-[5%] mb-0 font-semibold mt-[5%] text-slate-300 text-center content-center' id="name-label">Where to</text>
