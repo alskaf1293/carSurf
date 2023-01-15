@@ -1,31 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import Template from '../components/Template'
 import Star from '../assets/Star'
+import { collection, getDocs } from "firebase/firestore";
+import { db } from '../firebase';
+
 
 const PassengerRides = (props) => {
   const [drivers, setDrivers] = useState([])
+
+  const getDrivers = async () => {
+    try {
+      await getDocs(collection(db, "drivers"))
+        .then((querySnapshot) => {
+          const data = querySnapshot.docs
+            .map((doc) => ({ ...doc.data(), id: doc.id }));
+          console.log("recieved data", data)
+          setDrivers(data)
+        })
+
+    } catch (e) {
+      console.error("Error:", e);
+    }
+  }
+
   useEffect(() => {
-    const drivers = [
-      {
-        name: "Devan Leland",
-        rides: 25,
-        stars: 3.8
-      },
-      {
-        name: "Harris Connor",
-        rides: 332,
-        stars: 4.8
-      }
-    ]
-    setDrivers(drivers)
+    getDrivers()
   }, [])
-
-
 
   return (
     <Template title='Drivers Near Me' >
       <div className='flex flex-col h-full w-full ' >
-        {drivers.map((driver) => <Ride name={driver.name} rides={driver.rides} stars={driver.stars} />)}
+        {drivers.map((driver) => <Ride name={driver.name} rides={driver.rides} stars={driver.rating} />)}
       </div>
     </Template>
   )
