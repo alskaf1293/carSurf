@@ -23,7 +23,17 @@ const DriverDestination = () => {
 
     <fieldset className='bg-blue-200 rounded-xl py-7'>
         <div>
-            <label className='w-[90%] ml-[5%] mb-0 font-semibold' id="name-label">Where to:
+            <label className='w-[90%] ml-[5%] mb-0 font-semibold mt-[5%]'>Within:
+                <input list="hosting-plan" type="tel" placeholder="mile" />
+                <datalist id="hosting-plan">
+                    <option value="1">mile</option>
+                    <option value="5">mile</option>
+                    <option value="10">mile</option>
+                </datalist>
+            </label>
+        </div>
+        <div>
+            <label className='w-[90%] ml-[5%] mb-0 font-semibold mt-[5%]' id="name-label">Where to:
                 <input onChange={onDestinationChange} value={destination} className='w-[90%] ml-[5%] rounded mt-2 p-4' id="name" type="text" required placeholder="Enter a destination"/>
             </label>
         </div>
