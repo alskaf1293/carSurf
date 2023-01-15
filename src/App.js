@@ -7,6 +7,7 @@ import Login from './pages/login';
 import Home from './pages/home';
 import DriverDestination from './pages/driver-destination';
 import SignUp from './pages/sign-up';
+import RideInProgress from './pages/ride-in-progress';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
       <Route path='home' element={<Home />} />
       <Route path='driver-destination' element={<DriverDestination />} />
       <Route path='sign-up' element={<SignUp />} />
-
+      <Route path='ride-in-progress' element={<RideInProgress/>} />
     </Routes>
   );
 }

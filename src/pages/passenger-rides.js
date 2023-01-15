@@ -20,8 +20,6 @@ const PassengerRides = (props) => {
     setDrivers(drivers)
   }, [])
 
-
-
   return (
     <Template title='Drivers Near Me' >
       <div className='flex flex-col h-full w-full ' >
