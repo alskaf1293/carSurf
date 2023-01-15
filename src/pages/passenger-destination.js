@@ -31,22 +31,26 @@ const PassengerDestination = () => {
 
   const [destination, setDestination] = useState('')
 
-  const onSubmit = async () => {
+  const onSubmit = () => {
     console.log("Going to ", destination)
+    /*
+    const userDoc = collection(db, "user");
+    const userSnap = getDoc(doc(userDoc, auth.currentUser.uid));
 
-    const userDoc = await getDoc(doc(db, "user", auth.currentUser.uid));
-
-    const docRef = await addDoc(collection(db, "passengers"), {
+    console.log(userSnap.data());
+    */
+    const docRef = addDoc(collection(db, "passengers"), {
       name: auth.currentUser.displayName,
-      rides: userDoc.data()['rides'],
-      rating: userDoc.data()['rating'],
+      rides: 4,
+      rating: 5,
       userId: auth.currentUser.uid,
       chosen_driver: "none",
       destination: destination,
       rideInProgress: false,
+    }).then(()=>{
+      navigate("/passenger-rides");
     });
 
-    navigate("/passenger-rides")
   }
 
   const onDestinationChange = (e) => {

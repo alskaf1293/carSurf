@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Template from '../components/Template'
 import Star from '../assets/Star'
 import { useNavigate } from "react-router-dom";
-import { collection, getDocs, query, where, doc, getDoc, setDoc, onSnapshot } from "firebase/firestore";
+import { getDocs, query, where, doc, getDoc, setDoc, onSnapshot, collection } from "firebase/firestore";
 import { db } from '../firebase';
 
 import {getAuth, onAuthStateChanged} from "firebase/auth";
@@ -49,8 +49,25 @@ const PassengerRides = (props) => {
   //   }
   // }
 
-  useEffect(() => {
-    const unsub = onSnapshot(doc(db, "passengers", auth.currentUser.uid), (doc) => {
+  async function docSnapshot(){
+
+    const qu = query(collection(db, 'passengers'), where("userId", "==", auth.currentUser.uid))
+      const docs = await getDocs(qu)
+      .then((querySnapshot) => {
+        const data = querySnapshot.docs
+          .map((doc) => ({ ...doc.data(), id: doc.id }));
+        console.log("recieved data", data)
+        return data
+      })
+
+    console.log("docs", docs[0].id) // id of the document in passengers
+      const destination = docs[0].destination
+
+
+    const docRef = doc(db, "passengers", docs[0].id);
+    const docSnap = await getDoc(docRef);
+
+    const unsub = onSnapshot(docSnap, (doc) => {
       console.log("Current data: ", doc.data());
 
       if (doc.data()['rideInProgress']) {
@@ -58,9 +75,14 @@ const PassengerRides = (props) => {
       }
     });
 
-    return () => {
-      unsub()
-    }
+  }
+
+
+  useEffect(() => {
+    docSnapshot();
+    //return () => {
+      //unsub()
+    //}
 
   }, [])
 
@@ -69,14 +91,45 @@ const PassengerRides = (props) => {
 
       // Get Destination from the users
 
-      const docRef = doc(db, "passengers");
+    // const qu = query(collection(db, 'passengers'), where("userId", "==", userId))
+    // const docs = await getDocs(qu)
+    //   .then((querySnapshot) => {
+    //     const data = querySnapshot.docs
+    //       .map((doc) => ({ ...doc.data(), id: doc.id }));
+    //     console.log("recieved data", data)
+    //     return data
+    //   })
 
-      const query = query(docRef, where("userId", "==", auth.currentUser.uid));
-      const docSnap = await getDoc(query);
+    // console.log("docs", docs[0].id) // id of the document in passengers
 
-      console.log("snap data", docSnap.data())
-      const destination = docSnap.data()['destination']
-      console.log("destination", destination)
+
+    // // const docRef1 = doc(db, "passengers", docs[0].id);
+    // // setDoc(docRef1, { chosen_driver: props.userId }, { merge: true })
+
+
+    //   const docRef = doc(db, "passengers", docs[0].id);
+
+    //   const query = query(docRef, where("userId", "==", auth.currentUser.uid));
+    //   const docSnap = await getDoc(query);
+
+    //   console.log("snap data", docSnap.data())
+    //   const destination = docSnap.data()['destination']
+    //   console.log("destination", destination)
+
+
+      // get destination for passenger
+
+      const qu = query(collection(db, 'passengers'), where("userId", "==", auth.currentUser.uid))
+      const docs = await getDocs(qu)
+      .then((querySnapshot) => {
+        const data = querySnapshot.docs
+          .map((doc) => ({ ...doc.data(), id: doc.id }));
+        console.log("recieved data", data)
+        return data
+      })
+
+    console.log("docs", docs[0].id) // id of the document in passengers
+      const destination = docs[0].destination
 
       const q = query(collection(db, 'drivers'), where("destination", "==", destination))
       await getDocs(q)
