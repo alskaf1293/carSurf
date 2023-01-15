@@ -1,8 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Template from '../components/Template'
-//import styles from '../css/driver-destination.module.css'
+import { useNavigate } from "react-router-dom";
 
 const DriverDestination = () => {
+  const navigate = useNavigate();
+
+  const [destination, setDestination] = useState('')
+
+  const onSubmit = () => {
+    console.log("Going to ", destination)
+    navigate("/passenger-rides")
+  }
+
+  const onDestinationChange = (e) => {
+    setDestination(e.target.value)
+  }
+
+
   return (
     <Template title = "Driver">
     <div className = 'h-full flex justify-center items-center '>
@@ -14,7 +28,7 @@ const DriverDestination = () => {
             </label>
         </div>
         <div>
-            <button className='w-[90%] border-2 rounded border-blue-500 bg-blue-500 text-white p-4 ml-[5%] my-4'
+            <button onClick={onSubmit} className='w-[90%] border-2 rounded border-blue-500 bg-blue-500 text-white p-4 ml-[5%] my-4'
                 id="submit" type="submit">Submit
             </button>
         </div>
