@@ -4,19 +4,17 @@ import Template from '../components/Template'
 
 const DriverDestination = () => {
   return (
-    <Template >
-    <div>
-      <h1 className='font-bold text-red-500 text-center pt-6'>
-        Driver
-      </h1>
-      <fieldset>
+    <Template title = "Driver">
+    <div className = 'h-full flex justify-center items-center '>
+
+    <fieldset className='bg-blue-200 rounded-xl py-7'>
         <div>
-            <label id="name-label">Where to:
-                <input id="name" type="text" required placeholder="Enter a destination"/>
+            <label className='w-[90%] ml-[5%] mb-0' id="name-label">Where to:
+                <input className='w-[90%] ml-[5%] rounded mt-2' id="name" type="text" required placeholder="Enter a destination"/>
             </label>
         </div>
         <div>
-            <button className='font-bold'
+            <button className='w-[90%] border-2 rounded border-blue-500 bg-blue-500 text-white p-4 ml-[5%] my-4'
                 id="submit" type="submit">Submit
             </button>
         </div>
