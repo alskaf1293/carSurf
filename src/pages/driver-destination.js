@@ -6,6 +6,7 @@ const DriverDestination = () => {
   const navigate = useNavigate();
 
   const [destination, setDestination] = useState('')
+  const [range, setRange] = useState('')
 
   const onSubmit = () => {
     console.log("Going to ", destination)
@@ -16,6 +17,9 @@ const DriverDestination = () => {
     setDestination(e.target.value)
   }
 
+  const onRangeChange = (e) => {
+    setRange(e.target.value)
+  }
 
   return (
     <Template title = "Driver">
@@ -24,11 +28,11 @@ const DriverDestination = () => {
     <fieldset className='bg-blue-200 rounded-xl py-7'>
         <div>
             <label className='w-[90%] ml-[5%] mb-0 font-semibold mt-[5%]'>Within:
-                <input list="hosting-plan" type="tel" placeholder="mile" />
+                <input onChange={onRangeChange} value={range} list="hosting-plan" type="tel" placeholder="mile" className='rounded mb-10'/>
                 <datalist id="hosting-plan">
                     <option value="1">mile</option>
-                    <option value="5">mile</option>
-                    <option value="10">mile</option>
+                    <option value="5">miles</option>
+                    <option value="10">miles</option>
                 </datalist>
             </label>
         </div>
