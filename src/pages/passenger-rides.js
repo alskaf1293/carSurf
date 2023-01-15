@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Template from '../components/Template'
 import Star from '../assets/Star'
-import { collection, getDocs, query, where, doc, getDoc } from "firebase/firestore";
+import { collection, getDocs, query, where, doc, getDoc, setDoc, onSnapshot } from "firebase/firestore";
 import { db } from '../firebase';
 
 // const DESTINATION = "Los Angeles, CA"
@@ -10,6 +10,33 @@ const userId = "NUoFLMNr7xphgh0zU3wh"
 
 const PassengerRides = (props) => {
   const [drivers, setDrivers] = useState([])
+
+  const realTimeUpdates = async () => {
+    const docRef = doc(db, "passengers", userId);
+    const docSnap = await getDoc(docRef);
+    const driverUserId = docSnap.data().chosen_driver
+
+    const unsub = onSnapshot(doc(db, "drivers", driverUserId), (doc) => {
+      console.log("Current data: ", doc.data());
+
+      if (doc.data().rideInProgress) {
+        navigator('/ride-in-progress')
+      }
+    });
+
+    return () => {
+      unsub()
+    }
+  }
+
+  useEffect(() => {
+    const unsub = realTimeUpdates()
+
+    return () => {
+      unsub()
+    }
+
+  }, [])
 
   const getDrivers = async () => {
     try {
@@ -55,6 +82,8 @@ const Ride = (props) => {
     // gets user id
     // gets user in passengers
     // updates chosen_driver in passengers to chosen driver
+    const docRef = doc(db, "passengers", userId);
+    setDoc(docRef, { chosen_driver: props.userId }, { merge: true })
   }
 
   return (
