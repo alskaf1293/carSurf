@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import Template from '../components/Template'
 import Star from '../assets/Star'
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+import { collection, getDocs, query, where, doc, setDoc } from "firebase/firestore";
 import { db } from '../firebase';
 
 const DRIVER_ID = "5ewiHEDJ7dhK4cpOYTLn"
 // const DRIVER_ID = 'as'
 
 const DriverRequests = (props) => {
+  const navigator = useNavigate()
 
   const [requests, setRequests] = useState([])
 
@@ -41,8 +43,22 @@ const DriverRequests = (props) => {
 }
 
 const Request = (props) => {
+  const navigator = useNavigate()
+  const choosePassenger = () => {
+
+    console.log("choosing passenger", props.userId)
+    // have user id
+    // set rideInProgress to true
+    // set passenger rideInProgress to true
+
+    const docRef = doc(db, "users", props.userId);
+    setDoc(docRef, { rideInProgress: true }, { merge: true })
+
+    navigator('/ride-in-progress')
+
+  }
   return (
-    <div className='my-4 w-full p-2 flex bg-blue-300' >
+    <div className='my-4 w-full p-2 flex bg-blue-300' onClick={choosePassenger}>
       <div className='mr-4 w-[60px] h-[60px] bg-gray-400 rounded-full' >
       </div>
       <div className='text-xl' >

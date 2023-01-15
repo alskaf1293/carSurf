@@ -2,12 +2,15 @@ import React, { useState } from 'react'
 import Template from '../components/Template'
 import { useNavigate } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
-import {db} from '../firebase'
+import { db } from '../firebase'
 
-const NAME = "Alan Mathison"
-const RIDES = 4
-const RATING = 5.0
-const USERID = 'user id from auth'
+// TODO
+// Get this information from the users collection
+// need user id from the authentication in this file!
+const NAME = "Devant Thames"
+const RIDES = 3.2
+const RATING = 83
+const USERID = '5ewiHEDJ7dhK4cpOYTLn'
 
 const PassengerDestination = () => {
   const navigate = useNavigate();
@@ -22,7 +25,9 @@ const PassengerDestination = () => {
       rides: RIDES,
       rating: RATING,
       userId: USERID,
-      chosen_driver: "none"
+      chosen_driver: "none",
+      destination: destination,
+      rideInProgress: false,
     });
 
     navigate("/passenger-rides")
