@@ -45,14 +45,13 @@ const PassengerDestination = () => {
     <Template title="Ride">
       <div style={backgroundStyle} className='h-full flex justify-center items-center '>
 
-        <fieldset className='bg-slate-700 rounded-xl py-7'>
-          <div>
-            <label className='w-[90%] ml-[5%] mb-0 font-semibold text-white' id="name-label">Where to
-              <input onChange={onDestinationChange} value={destination} className='w-[90%] ml-[5%] rounded mt-2 p-4 text-black' id="name" type="text" required placeholder="Enter a destination" />
-            </label>
+        <fieldset className='bg-slate-800 rounded-xl py-7'>
+          <div className="py-5 space-y-3 content-center">
+            <label className='w-[90%] ml-[5%] mb-0 font-semibold mt-[5%] text-red-200 text-center content-center' id="name-label">Where to</label>
+              <input onChange={onDestinationChange} value={destination} className='text-lg text-black w-[90%] ml-[5%] rounded mt-2 p-2' id="name" type="text" required placeholder="Enter a destination" />
           </div>
           <div>
-            <button onClick={onSubmit} className='w-[90%] rounded text-white p-4 ml-[5%] my-4 font-semibold'
+            <button onClick={onSubmit} className='w-[90%] rounded text-sky-300 p-4 ml-[5%] my-4 font-semibold'
               id="submit" type="submit">Submit
             </button>
           </div>
