@@ -9,6 +9,8 @@ let staticPath = path.join(__dirname, 'build');
 
 const rootRouter = express.Router();
 
+const { createUser } = require('./api/sign-up')
+
 const { initalizeSession } = require('./util/initalizeSession.js');
 
 const passport = require('passport');
@@ -56,17 +58,39 @@ rootRouter.get('/(*)?', (req, res) =>{
 
 app.use(rootRouter);
 
+const accounts = {
+    "devantthames@gmail.com": {
+        password: "password123"
+    },
 
+    "enokethelred@gmail.com": {
+        password: "password123"
+    }
 
-app.post('/api/login', passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect: '/login'
-}));
+}
+
+app.post('/api/login', (req, res) =>{ 
+
+    Object.entries(accounts).forEach(([key, value]) =>{
+        console.log(req.body.password);
+        if(req.body.email == key && req.body.password == value.password){
+            res.sendStatus(200);
+        }
+        else{
+            res.sendStatus(500);
+        }
+    });
+
+});
 
 app.post('/api/createAccount', (req, res) => {
-
-   console.log(req.body);
-    
+    try{
+        createUser(userDB, req, req.body.email, req.body.password);
+        res.send(200);
+    }
+    catch(err){
+        res.send(300);
+    }
 });
 
 app.listen(port, ()=>{
