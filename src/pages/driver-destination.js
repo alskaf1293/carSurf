@@ -3,6 +3,8 @@ import Template from '../components/Template'
 import { useNavigate } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from '../firebase'
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 
 const NAME = "Enok Ethelred"
 const RIDES = 4
@@ -11,6 +13,18 @@ const USERID = 'blgijOhtDWAyU8mrl7y5'
 
 
 const DriverDestination = () => {
+
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if(user){
+      console.log("Logged in as " + user.email);
+    }
+    else{
+      console.log("Logged out");
+      navigate('/login');
+    }
+  });
+
   const navigate = useNavigate();
 
   const [destination, setDestination] = useState('')
@@ -20,10 +34,10 @@ const DriverDestination = () => {
     console.log("Going to ", destination)
 
     const docRef = await addDoc(collection(db, "drivers"), {
-      name: NAME,
-      rides: RIDES,
-      rating: RATING,
-      userId: USERID,
+      name: auth.currentUser.displayName,
+      rides: auth.currentUser.rides,
+      rating: auth.currentUser.rating,
+      userId: auth.currentUser.uid,
       chosen_driver: "none",
       destination: destination,
       range: range,
