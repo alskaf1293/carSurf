@@ -28,7 +28,7 @@ const Template = (props) => {
 
   return (
     <div className='w-full h-screen' >
-      <div className='p-6 bg-blue-500 flex items-center shadow' >
+      <div className='h-[10vh] p-6 bg-slate-800 flex items-center shadow' >
         <div className='flex items-center mr-auto' >
           <div onClick={onClickLogo} className='flex justify-center items-center w-[40px] h-[40px] cursor-pointer' >
             <Logo />
@@ -39,7 +39,7 @@ const Template = (props) => {
           <Signout />
         </div>
       </div>
-      <h1 className="h-full text-3xl font-bold">
+      <h1 className="h-[90vh]  text-3xl font-bold">
         {props.children}
       </h1>
     </div>

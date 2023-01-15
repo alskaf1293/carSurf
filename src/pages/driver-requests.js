@@ -32,10 +32,13 @@ const DriverRequests = (props) => {
   useEffect(() => {
     getPassengerRequests()
   }, [])
-
+  const backgroundStyle={
+    //https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80
+    backgroundImage: "url('https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80')"
+  }
   return (
-    <Template title='Passenger Requests' >
-      <div className='flex flex-col h-full w-full ' >
+    <Template title='Your Requests' >
+      <div style={backgroundStyle} className='flex flex-col h-full w-full ' >
         {requests.map((request) => <Request key={request.id} name={request.name} rides={request.rides} stars={request.rating} userId={request.userId} />)}
       </div>
     </Template>
@@ -58,7 +61,7 @@ const Request = (props) => {
 
   }
   return (
-    <div className='my-4 w-full p-2 flex bg-blue-300' onClick={choosePassenger}>
+    <div className='my-4 w-full p-2 flex bg-slate-300' onClick={choosePassenger}>
       <div className='mr-4 w-[60px] h-[60px] bg-gray-400 rounded-full' >
       </div>
       <div className='text-xl' >

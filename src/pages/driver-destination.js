@@ -53,15 +53,19 @@ const DriverDestination = () => {
   const onRangeChange = (e) => {
     setRange(e.target.value)
   }
+  const backgroundStyle={
+    //https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80
+    backgroundImage: "url('https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80')"
+  }
 
   return (
-    <Template title="Driver">
-      <div className='h-full flex justify-center items-center '>
+    <Template title="CarSurf">
+      <div style={backgroundStyle} className='flex flex-col h-full w-full justify-center items-center gap-y-8'>
 
-        <fieldset className='bg-blue-200 rounded-xl py-7'>
+        <fieldset className='bg-slate-800 rounded-xl py-7 '>
           <div>
-            <label className='w-[90%] ml-[5%] mb-0 font-semibold mt-[5%]'>Within:
-              <input onChange={onRangeChange} value={range} list="hosting-plan" type="tel" placeholder="mile" className='rounded mb-10' />
+            <label className='w-[90%] ml-[5%] mb-0 font-semibold mt-[5%] text-white'>Within
+              <input onChange={onRangeChange} value={range} list="hosting-plan" type="tel" placeholder="mile" className='text-black w-[90%] ml-[5%] rounded mt-2 p-4' />
               <datalist id="hosting-plan">
                 <option value="1">mile</option>
                 <option value="5">miles</option>
@@ -69,13 +73,13 @@ const DriverDestination = () => {
               </datalist>
             </label>
           </div>
-          <div>
-            <label className='w-[90%] ml-[5%] mb-0 font-semibold mt-[5%]' id="name-label">Where to:
-              <input onChange={onDestinationChange} value={destination} className='w-[90%] ml-[5%] rounded mt-2 p-4' id="name" type="text" required placeholder="Enter a destination" />
+          <div className="py-7">
+            <label className='w-[90%] ml-[5%] mb-0 font-semibold mt-[5%] text-white' id="name-label">Where to
+              <input onChange={onDestinationChange} value={destination} className='text-black w-[90%] ml-[5%] rounded mt-2 p-4' id="name" type="text" required placeholder="Enter a destination" />
             </label>
           </div>
           <div>
-            <button onClick={onSubmit} className='w-[90%] border-2 rounded border-blue-500 bg-blue-500 text-white p-4 ml-[5%] my-4 font-semibold'
+            <button onClick={onSubmit} className='w-[90%] rounded text-white p-4 ml-[5%] my-4 font-semibold'
               id="submit" type="submit">Submit
             </button>
           </div>
