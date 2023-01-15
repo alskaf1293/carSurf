@@ -65,11 +65,11 @@ const Request = (props) => {
       <div className='mr-4 w-[60px] h-[60px] bg-gray-400 rounded-full' >
       </div>
       <div className='text-xl' >
-        <h3>{props.name}</h3>
+        <h3 className="text-slate-800">{props.name}</h3>
         <h4 className='text-lg text-gray-800' >{props.rides} rides</h4>
       </div>
       <div className='ml-auto mr-4 flex items-center mb-2' >
-        <h4 className='' >{props.stars}</h4>
+        <h4 className='text-slate-800' >{props.stars}</h4>
         <Star />
       </div>
     </div>

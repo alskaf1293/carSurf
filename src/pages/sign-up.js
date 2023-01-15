@@ -68,10 +68,10 @@ const SignUp = (props) => {
     >
       <div className='dark:bg-slate-800 rounded w-[300px] p-6' >
         <h1 className='mb-4 text-white text-2xl font-semibold' >Sign Up</h1>
-        <input onChange={onNameChange} value={name} type="name" placeholder='name' name='name' className='w-full mb-4 border-2 rounded p-2  bg-slate-500'/>
-        <input onChange={onEmailChange} value={email} type="email" placeholder='email' name='email' className='w-full mb-4 border-2 rounded p-2  bg-slate-500' />
-        <input onChange={onPasswordChange} value={password} type="password" name='password' placeholder='password' className='w-full mb-4 rounded p-2' />
-        <input onChange={onConfirmPasswordChange} value={confirmPassword} type="password" placeholder='confirm password' className='w-full mb-4 rounded p-2' />
+        <input onChange={onNameChange} value={name} type="name" placeholder='name' name='name' className='w-full mb-4 border-2 rounded p-2'/>
+        <input onChange={onEmailChange} value={email} type="email" placeholder='email' name='email' className='w-full mb-4 border-2 rounded p-2 ' />
+        <input onChange={onPasswordChange} value={password} type="password" name='password' placeholder='password' className='w-full mb-4 border-2 rounded p-2' />
+        <input onChange={onConfirmPasswordChange} value={confirmPassword} type="password" placeholder='confirm password' className='w-full mb-4 border-2 rounded p-2' />
         <button onClick={onCreate} className='text-white w-full pt-3 mb-0' >Create Account</button>
       </div>
     </div>

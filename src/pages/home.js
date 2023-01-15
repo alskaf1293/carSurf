@@ -37,10 +37,10 @@ const Home = (props) => {
   return (
       <Template title='CarSurf' >
         <div style={backgroundStyle} className='flex flex-col h-full w-full justify-center items-center gap-y-8' >
-          <div onClick={onClickDriver} className='w-[300px] h-[100px] font-sans bg-slate-800 text-white flex justify-center items-center rounded cursor-pointer'>
+          <div onClick={onClickDriver} className='w-[300px] h-[100px] font-sans bg-slate-800 text-red-200 flex justify-center items-center rounded cursor-pointer'>
             <text className="font-sans text-xl">Driver</text>
           </div>
-          <div onClick={onClickPassenger} className='w-[300px] h-[100px] font-sans bg-slate-800 text-white flex justify-center items-center rounded cursor-pointer' >
+          <div onClick={onClickPassenger} className='w-[300px] h-[100px] font-sans bg-slate-800 text-sky-200 flex justify-center items-center rounded cursor-pointer' >
             <text className="font-sans text-xl">Passenger</text>
           </div>
         </div>
