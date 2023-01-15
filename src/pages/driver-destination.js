@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Template from '../components/Template'
 import { useNavigate } from "react-router-dom";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, getDoc, doc } from "firebase/firestore";
 import { db } from '../firebase'
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
@@ -33,10 +33,12 @@ const DriverDestination = () => {
   const onSubmit = async () => {
     console.log("Going to ", destination)
 
+    const userDoc = await getDoc(doc(db, "user", auth.currentUser.uid));
+    
     const docRef = await addDoc(collection(db, "drivers"), {
       name: auth.currentUser.displayName,
-      rides: auth.currentUser.rides,
-      rating: auth.currentUser.rating,
+      rides: userDoc.data()['rides'],
+      rating: userDoc.data()['rating'],
       userId: auth.currentUser.uid,
       chosen_driver: "none",
       destination: destination,

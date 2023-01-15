@@ -25,7 +25,7 @@ const SignUp = (props) => {
         }).then(() => {
           console.log("test");
           const userDoc = setDoc(doc(db, "user", user.uid), {
-             reviews: 0, aggregateReviews: 0, rating: 3, 
+             reviews: 0, aggregateReviews: 0, rating: 3, rides: 0
           });
           console.log("full profile completed");
           navigate('/login');
